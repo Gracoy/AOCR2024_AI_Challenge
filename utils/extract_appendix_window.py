@@ -4,7 +4,9 @@ import glob
 import nibabel as nib
 
 
-# These two programs are pre-process step for segmentation model and classification model respectively.
+"""
+These two programs are pre-process step for segmentation model and classification model respectively.
+"""
 
 
 def extract_appendix_bounding_box_from_gt():
