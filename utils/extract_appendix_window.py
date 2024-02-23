@@ -17,14 +17,14 @@ def extract_appendix_bounding_box_from_gt():
     """
 
     # directory of ground truth labels
-    gt_mask_folder = "C:\\Users\\s8904\\Downloads\\scan_with_3labels"
+    gt_mask_folder = "D:\\aocr2024\\mask_files"
 
     gz_files = glob.glob(gt_mask_folder + "\\*")
     appendix_window = []
     for idx, gz in enumerate(gz_files):
         if (idx + 1) % 50 == 0:
             print(f"Handling no.{idx + 1} file")
-        scan_name = gz.split("\\")[-1].replace("_label_1.nii.gz", "")   # remove suffix and extend of file name
+        scan_name = gz.split("\\")[-1].replace("_label_1.nii.gz", "")   # remove suffix and extend of the file name
 
         # read data and initialize the coordinates
         start_i, end_i = 1000, -1
@@ -64,7 +64,7 @@ def extract_appendix_bounding_box_from_gt():
                                                       "start_i", "end_i",
                                                       "start_j", "end_j",
                                                       "start_k", "end_k"])
-    df_slice.to_csv("appendix_coordinates_3labels_split500.csv", index=False)
+    df_slice.to_csv("label_bounding_box_coordinates_from_gt.csv", index=False)
 
 
 def extract_appendix_bounding_box_from_seg():
@@ -76,12 +76,12 @@ def extract_appendix_bounding_box_from_seg():
     """
 
     # directory of post-processed segmented results
-    seg_result_folder = "D:\\Dataset779_Appendix3labels_seg_result_tv1000_pp"
+    seg_result_folder = "D:\\aocr2024\\Dataset779_Appendix_seg_result_pp"
 
     # due to we change the file name to fit the format required for nnU-Net
     # we need to recover to the original file name corresponding the
     # csv file we store during the file sorting step
-    scan_name_df = pd.read_csv("D:\\aocr2024\\nnU_Net\\scan_sample_name_map_779_3labels.csv")
+    scan_name_df = pd.read_csv("D:\\aocr2024\\nnU_Net\\scan_sample_name_map.csv")
     scan_name_map = {}
     for index, data in scan_name_df.iterrows():
         scan_name_map[data["sample_id"]] = data["scan_id"]
@@ -140,7 +140,7 @@ def extract_appendix_bounding_box_from_seg():
                                                       "start_i", "end_i",
                                                       "start_j", "end_j",
                                                       "start_k", "end_k"])
-    df_slice.to_csv("appendix_box_coordinates_tv1000.csv", index=False)
+    df_slice.to_csv("appendix_bounding_box_coordinates_from_seg.csv", index=False)
 
 
 if __name__ == "__main__":
