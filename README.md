@@ -20,4 +20,4 @@ then use the segmentation results to train ResNeXt3D to inference scan-level lab
 9. Create json files for train/val and test split respectively.
 10. Run notebook "ResNeXt_3D.ipynb" to train RexNext3D classification models.
 11. Run notebook "ResNeXt_3D_inference.ipynb" to inference test data and obtain scan-lavel labels.
-12. Combine slice-level labels obtained from step 6 and scan-lavel labels obtained from step 11 for final results.
+12. Combine slice-level labels obtained from step 6 and scan-level labels obtained from step 11 for final results.
