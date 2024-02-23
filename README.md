@@ -8,7 +8,7 @@ then use the segmentation results to train ResNeXt3D to inference scan-lavel lab
 ## Segemntation task
 1. Use "extract_appendix_window.py" to obatin 3D bounding box coordinates of ground truth labels and record as csv file.
 2. Crop the train data, train label and test files corresponding to the 3D bounding box by "nii_cropper.py".
-3. Change the file format and create json file to meet requirement of nnU-Net by "prepare_data()" in "file_sorter.py"
+3. Change the file format and create json file to meet requirement of nnU-Net by "file_sorter.py"
 4. Run notebook "nnU-Net.ipynb" to train nnU-Net segmentation model and inference test data.
 5. Use "seg_post_process.py" to optimize segmentation results of nnU-Net.
 6. Run "get_slice_label.py" to iterate through post-processed segmentation results to obtain slice-lavel labels.
