@@ -28,11 +28,11 @@ def copy_and_rename(base_dir):
     maybe_mkdir(label_path)
 
     # directory of training dataset, the train data and label data are put in same directory
-    source_folder = "label_enhance_cholecystitis"
+    source_folder = "cropped_train_data"
     gz_files = glob.glob(source_folder + "\\*")
     scan_name_map = {}
     # you can name the task name whatever you want
-    task_name = "Cholecystitis"
+    task_name = "Appendix"
 
     file_counter = 0
     for gz in gz_files:
@@ -96,10 +96,10 @@ def rename_test_file():
     to meet the format requirement of nnU-Net and store file names to csv.
     """
     # directory of test dataset
-    base_directory = "D:\\aocr2024\\nnU_Net\\Cholecystitis_val200"
+    base_directory = "D:\\aocr2024\\nnU_Net\\cropped_test_data"
     gz_files = glob.glob(base_directory + "\\*")
     # you can name the task name whatever you want
-    task_name = "Cholecystitis"
+    task_name = "Appendix"
 
     file_counter = 0
     scan_name_map = {}
@@ -112,17 +112,17 @@ def rename_test_file():
 
     df_scan_name = pd.DataFrame.from_dict(scan_name_map, orient="index", columns=["sample_id"])
     df_scan_name.index.rename("scan_id", inplace=True)
-    df_scan_name.to_csv(f"scan_test_name_map_Cholecystitis_val200.csv")
+    df_scan_name.to_csv(f"scan_test_name_map.csv")
 
 
 def recover_to_original_name():
     """
-    This program recover the test data to original name for subsequent classification task
+    This program recover the test data to original name for subsequent classification task.
     """
-    target_directory = "D:\\Dataset779_Appendix3labels_seg_result_tv1000_pp_cropped"
+    target_directory = "D:\\Dataset779_Appendix3labels_seg_result_pp_cropped"
     gz_files = glob.glob(target_directory + "\\*")
 
-    scan_name_df = pd.read_csv("D:\\aocr2024\\nnU_Net\\scan_sample_name_map_779_3labels.csv")
+    scan_name_df = pd.read_csv("D:\\aocr2024\\nnU_Net\\scan_sample_name_map.csv")
     scan_name_map = {}
     for index, data in scan_name_df.iterrows():
         scan_name_map[data["sample_id"]] = data["scan_id"]
