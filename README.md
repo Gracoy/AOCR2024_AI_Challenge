@@ -1,10 +1,11 @@
 # AOCR2024_AI_Challenge
-Colab notebooks and utilities for AOCR2024 AI Challenge
+Colab notebooks and data pre-processing utilities of AOCR2024 AI Challenge.
 
-# How to use
-Use nnU-Net to find appendix position and extract the slice-lavel labels,
-then use the segmentation results to train ResNeXt3D to inference scan-lavel labels.
+# Pipeline :
+Use nnU-Net to find appendix location and extract the slice-level labels,
+then use the segmentation results to train ResNeXt3D to inference scan-level labels.
 
+# How to use :
 ## Segmentation task
 1. Use "extract_appendix_window.py" to obatin 3D bounding box coordinates of ground truth labels and record as csv file.
 2. Crop the train data, train label and test files corresponding to the 3D bounding box by "nii_cropper.py".
